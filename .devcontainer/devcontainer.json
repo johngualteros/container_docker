@@ -1,0 +1,20 @@
+{
+    "name": "DocFav",
+    "dockerComposeFile": "../docker-compose.yml",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "johnpapa.angular-essentials",
+                "duboiss.sf-pack",
+                "ms-vscode.vscode-typescript-next",
+                "ms-vscode.vscode-typescript-tslint-plugin",
+                "devsense.composer-php-vscode",
+                "ms-azuretools.vscode-docker",
+                "usernamehw.errorlens"
+            ]
+        }
+    },
+    "service": "application",
+    "workspaceFolder": "/var/www/html",
+    "remoteUser": "john"
+}

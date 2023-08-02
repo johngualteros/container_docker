@@ -1,0 +1,21 @@
+networks:
+  john:
+    driver: bridge
+volumes:
+  application:
+    driver: local
+  home:
+    driver: local
+services:
+  application:
+    image: application
+    ports:
+      - 8080:8080
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    volumes:
+      - application:/var/www/html
+      - home:/home/john
+    networks:
+      - john
