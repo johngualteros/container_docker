@@ -6,7 +6,7 @@ ENV TZ=America/Bogota \
 WORKDIR /var/www/html
 
 # Actualizar nuevamente los repositorios y luego instalar PHP 7.4 y las extensiones
-RUN apt-get update && apt-get upgrade && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     php \
     php-mysql \
     php-curl \
@@ -26,15 +26,15 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     curl \
     git \
     libssl1.0-dev \
-    nodejs-dev \
-    node-gyp \
-    nodejs \
     npm \
     golang \
     mysql-server \
-    mysql-client
+    mysql-client \
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && apt install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
-#RUN npm install -g @angular/cli@9.0.4
+RUN npm install -g @angular/cli@9.0.4
 
 RUN useradd -m john
 
@@ -43,11 +43,11 @@ RUN export GOPATH=$HOME/go \
 
 RUN chown -R john:john /var/www/html
 
-RUN apt-get install -y openjdk-8-jre
+# RUN apt-get install -y openjdk-8-jre
 
-RUN apt-get install -y openjdk-8-jdk
+# RUN apt-get install -y openjdk-8-jdk
 
-RUN update-alternatives --config java
+# RUN update-alternatives --config java
 
 # Instalar wget
 RUN apt-get update && apt-get install -y wget
